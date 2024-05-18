@@ -1,4 +1,4 @@
-import random_swap
+import random_people_swap
 from pymongo import MongoClient
 
 
@@ -7,12 +7,12 @@ def get_database():
     client = MongoClient(connection_string)
     return client
 def main():
-    response = random_swap.main()
+    response = random_people_swap.main()
     client = get_database()
-    db = client.sample_guides
-    coll = db.comets
+    db = client.sample
+    coll = db.people
     coll.drop()
-    result = coll.insert_many(response)
+    result = coll.insert_many([response])
     print(result.inserted_ids)
     client.close()
     
